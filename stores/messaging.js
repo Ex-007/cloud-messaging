@@ -1,6 +1,5 @@
 import {defineStore} from 'pinia'
 import { getToken, onMessage } from 'firebase/messaging'
-import { doc, setDoc, getDoc, updateDoc, collection } from 'firebase/firestore'
 
 
 export const useFirebasemessagingStore = defineStore('messaging', () => {
@@ -23,7 +22,6 @@ export const useFirebasemessagingStore = defineStore('messaging', () => {
             if(currentToken){
                 console.log(currentToken)
             }
-            console.log('no token')
         } catch (err) {
             error.value = err.message
             console.log(err.message)
@@ -32,7 +30,7 @@ export const useFirebasemessagingStore = defineStore('messaging', () => {
         }
     }
 
-    // Function to set up messaging listener
+    // SETUP MESSAGE LISTENER
     const setupMessageListener = () => {
         if (process.client && messaging) {
             onMessage(messaging, (payload) => {
@@ -60,7 +58,6 @@ export const useFirebasemessagingStore = defineStore('messaging', () => {
                     title: details.title
                 }
             })
-
             console.log('The response', response)
         } catch (err) {
             error.value = err.message
