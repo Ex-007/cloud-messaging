@@ -14,6 +14,6 @@ function startScheduler() {
     console.log("cool beans! I run once a second! 😀")
     logConsole()
     sendNoti()
-  }).everyMinute(20);
+  }).everyThirtyMinutes();
 
 }
