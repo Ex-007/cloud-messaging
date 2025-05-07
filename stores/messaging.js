@@ -1,6 +1,8 @@
 import {defineStore} from 'pinia'
 import { getToken, onMessage } from 'firebase/messaging'
 
+import {useCompo} from '~/composables/firstTest'
+
 
 export const useFirebasemessagingStore = defineStore('messaging', () => {
     const isLoading = ref(false)
@@ -9,6 +11,7 @@ export const useFirebasemessagingStore = defineStore('messaging', () => {
     const {$firebase} = useNuxtApp()
     const messaging = $firebase?.messaging
     const runtimeConfig = useRuntimeConfig()
+    const {logConsole} = useCompo()
 
     // GET THE TOKEN
     const fetchToken = async () => {
@@ -71,6 +74,7 @@ export const useFirebasemessagingStore = defineStore('messaging', () => {
         isLoading,
         error,
         fetchToken,
-        sendNoti
+        sendNoti,
+        logConsole
     }
 })
